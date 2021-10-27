@@ -155,7 +155,7 @@ var startGame = function() {
       }
   }
   else {
-    window.alert("You have lost your robot in battle! Game Over!");
+    window.alert(playerName + " is unable to continue...");
     // after loop ends, player is either out of health or enemies to fight
  endGame();
   }
@@ -171,7 +171,7 @@ var endGame = function() {
     window.alert("Great job, you have survived! You have a score of " + (playerMoney) + "!")
   }
   else {
-    window.alert("You've lost your robot in battle.")
+    window.alert("You've lost your robot in battle. Game Over")
   }
   var playAgainConfirm = window.confirm("Would you like to play again?");
 
