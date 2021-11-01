@@ -154,22 +154,33 @@ var startGame = function() {
 };
 // function to the end game
 var endGame = function() {
-  // if player is alive, you win
-  if (playerInfo.health > 0) {
-    window.alert("Great job, you have survived! You have a score of " + (playerInfo.money) + "!")
+  window.alert("The game has ended, let's see how you did!");
+  // check localstoage for high score, if its not there use 0
+  var highScore = localStorage.getItem("highscore");
+  var name = localStorage.getItem("name");
+  if (highScore === null) {
+    highScore = 0;
+  }
+  // if player has more money then highscore then new highscore!
+  if (playerInfo.money > highScore) {
+    localStorage.setItem("highscore", playerInfo.money);
+    localStorage.setItem("name", playerInfo.name);
+
+    alert(playerInfo.name + " now has the highscore of " + playerInfo.money + '!');
   }
   else {
-    window.alert("You've lost your robot in battle. Game Over")
+    alert(playerInfo.name + " did not beat the highscore of " + name + " with a score of " + highScore + ". Maybe next time!");
   }
+  // ask player if they'd like to play again
   var playAgainConfirm = window.confirm("Would you like to play again?");
 
   if (playAgainConfirm) {
     startGame();
-  }
+  } 
   else {
     window.alert("Thank you for playing Robot Gladiators! Come back soon!");
   }
-};
+}
 // function to generate a random numeric value
 var randomNumber = function(min, max) {
   var value = Math.floor(Math.random() * (max - min + 1) + min);
